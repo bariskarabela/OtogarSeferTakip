@@ -10,6 +10,7 @@ namespace OtogarSeferTakip
         {
             CreateMap<User, UserModel>().ReverseMap();
             CreateMap<User, EditUserModel>().ReverseMap();
+           
       
         }
     }

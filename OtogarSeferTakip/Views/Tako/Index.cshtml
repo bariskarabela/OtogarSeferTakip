@@ -1,0 +1,67 @@
+﻿@using OtogarSeferTakip.Entities;
+@model List<Tako>
+
+@{
+    ViewData["Title"] = "Takograflar";
+}
+
+
+<div class="row">
+    <div class="col">
+        <h1 class="display-4">@ViewData["Title"]</h1>
+        <hr />
+    </div>
+</div>
+
+
+<div class="row mb-3">
+    <div class="col">
+        <table id="takoTable" class="table table-hover table-sm">
+            <thead>
+                <tr>
+                    <th>Tagograf İsmi</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Tako tako in Model)
+                {
+                    <tr>
+                        <td>@tako.TakoName</td>
+
+                        <td class="text-end">
+                            <a asp-action="Edit" asp-route-id="@tako.TakoId" type="button" class="btn btn-info btn-sm bg-secondary"><i class="fa fa-edit me-2"></i></a>
+                            <a asp-action="Delete" asp-route-id="@tako.TakoId" onclick="return confirm('@tako.TakoName isimli takografı silmek istediğinize emin misiniz?')" type="button" class="btn btn-info btn-sm bg-secondary"><i class="fa fa-trash me-2"></i></a>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+@section Scripts {
+    @if (ViewData["result"] != null && ViewData["result"] == "PasswordReseted")
+    {
+        <script>
+            toastr["success"]("Şifre sıfırlandı.", "Başarılı.")
+        </script>
+
+    }
+    <script>
+        $(document).ready(function () {
+            $('#takoTable').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'excel', 'print'
+                ], "language": {
+                    "url": "/uploads/translate.json"
+                }
+            });
+        });
+    </script>
+
+
+}
