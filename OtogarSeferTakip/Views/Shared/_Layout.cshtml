@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Çocuk Şube Projesi</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/lib/toastrjs/toastr.min.css" rel="stylesheet" />
+    <link href="~/lib/font-awesome/css/all.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/CocukSubeProject.styles.css" asp-append-version="true" />
+
+    <link href="~/css/bir.min.css" rel="stylesheet" />
+
+
+
+
+
+
+</head>
+<body>
+    <header>
+        <div>
+
+
+            <div class=""><h1 class="text-info display-6"> <img src="~/logo.png" width="80" class="p-1" />OTOGAR SEFER TAKİP PROJESİ</h1></div>
+        </div>
+
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3" style="background-color: #e3f2fd;">
+            <div class="container-fluid">
+
+
+
+
+
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item me-2">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index"><i class="fa-solid fa-house me-2"></i>ANASAYFA</a>
+                            </li>
+                            <li class="nav-item me-2">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index"><i class="fa-solid fa-bus me-2"></i>ARAÇLAR</a>
+                            </li>
+                            <li class="nav-item me-2">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index"><i class="fa-solid fa-road me-2"></i>SEFERLER</a>
+                            </li>
+                            <li class="nav-item me-2">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index"><i class="fa-solid fa-id-card me-2"></i>SÜRÜCÜLER</a>
+                            </li>
+                            <li class="nav-item me-2">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index"><i class="fa-solid fa-triangle-exclamation me-2"></i>CEZA VE İKAZLAR</a>
+                            </li>
+                            <li class="nav-item me-2">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index"><i class="fa-solid fa-chart-simple me-2"></i>İSTATİSTİK</a>
+                            </li>
+
+                            if (User.IsInRole("admin"))
+                            {
+                                
+
+                                <li class="nav-item dropdown ms-auto">
+                                    <a class="nav-link dropdown-toggle" asp-controller="Admin" asp-action="Index" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa-solid fa-lock me-2"></i>
+                                        ADMİN İŞLEMLERİ
+                                    </a>
+
+                                    <ul class="dropdown-menu">
+                                        <li><a asp-controller="User" asp-action="Index" class="dropdown-item"><i class="fa-solid fa-users me-2"></i>Personeller</a></li>
+                                        <li><a asp-controller="Account" asp-action="Register" class="dropdown-item"><i class="fa-solid fa-plus me-2"></i>Personel Ekle</a></li>
+
+                                    </ul>
+
+
+
+                                </li>
+
+                            }
+
+
+                            <li class="nav-item ms-auto">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Profile"><i class="fa-solid fa-user me-2"></i>Profil=@User.FindFirst("Sicil")</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout"><i class="fa-solid fa-right-from-bracket me-2"></i>Çıkış Yap</a>
+                            </li>
+
+
+
+
+
+                        }
+                        else
+                        {
+                            <li class="nav-item  ms-auto">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login"><i class="fa-solid fa-right-to-bracket me-2"></i>Giriş Yap</a>
+                            </li>
+
+                        }
+
+
+
+
+
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container-fluid">
+        <main role="main" class="pb-3">
+
+            @RenderBody()
+
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - Bilgi Teknoloji ve Haberleşme Şube Müdürlüğü
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/toastrjs/toastr.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/yedi.js"></script>
+
+
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
