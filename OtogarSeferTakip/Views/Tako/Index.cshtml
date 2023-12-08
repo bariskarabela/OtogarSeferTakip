@@ -1,5 +1,5 @@
 ﻿@using OtogarSeferTakip.Entities;
-@model List<Tako>
+@model List<Tako>;
 
 @{
     ViewData["Title"] = "Takograflar";
@@ -8,18 +8,56 @@
 
 <div class="row">
     <div class="col">
-        <h1 class="display-4">@ViewData["Title"]</h1>
+        <h1 class="display-4 text-center">@ViewData["Title"]</h1>
         <hr />
     </div>
 </div>
 
 
 <div class="row mb-3">
-    <div class="col">
+    <div class="offset-4 col-4">
+
+        <div class="mb-1">
+            <button type="button" class="btn btn-success btn-rounded" data-bs-toggle="modal" data-bs-target="#ModalAdd"><i class="fa-solid fa-plus me-2"></i>Ekle</button>
+        </div>
+     
+
+        <!-- Modal -->
+        <div class="modal fade" id="ModalAdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ekle</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <form method="post">
+                        <div class="modal-body">
+                            <div asp-validation-summary="All" class="text-danger small"></div>
+
+
+                            <div class="form-group mb-3">
+                                <label name="TakoName" class="form-label">Takograf İsmi</label>
+                                <input type="text" name="TakoName" class="form-control" placeholder="Takograf İsmi" />
+                                <span asp-validation-summary="All" class="text-danger small"></span>
+                            </div>
+                
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kapat</button>
+                            <button type="submit" asp-action="Add" class="btn btn-success">Kaydet</button>
+                        </div>
+                       
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
         <table id="takoTable" class="table table-hover table-sm">
             <thead>
                 <tr>
-                    <th>Tagograf İsmi</th>
+                    <th>Takograf İsmi</th>
                     <th></th>
                 </tr>
             </thead>
@@ -30,8 +68,9 @@
                         <td>@tako.TakoName</td>
 
                         <td class="text-end">
+
                             <a asp-action="Edit" asp-route-id="@tako.TakoId" type="button" class="btn btn-info btn-sm bg-secondary"><i class="fa fa-edit me-2"></i></a>
-                            <a asp-action="Delete" asp-route-id="@tako.TakoId" onclick="return confirm('@tako.TakoName isimli takografı silmek istediğinize emin misiniz?')" type="button" class="btn btn-info btn-sm bg-secondary"><i class="fa fa-trash me-2"></i></a>
+                            @*                            <a asp-action="Delete" asp-route-id="@tako.TakoId" onclick="return confirm('@tako.TakoName isimli takografı silmek istediğinize emin misiniz?')" type="button" class="btn btn-info btn-sm bg-secondary"><i class="fa fa-trash me-2"></i></a>*@
 
                         </td>
                     </tr>
@@ -43,17 +82,27 @@
 
 
 @section Scripts {
-    @if (ViewData["result"] != null && ViewData["result"] == "PasswordReseted")
+    @if (TempData["Message"] != null)
     {
-        <script>
-            toastr["success"]("Şifre sıfırlandı.", "Başarılı.")
-        </script>
-
+        <script type="text/javascript">toastr.success("@TempData["Message"]");</script>
+    }
+    @if (ViewData["Message"] != null)
+    {
+        <script type="text/javascript">toastr.success("@ViewData["Message"]");</script>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <script type="text/javascript">toastr.error("@TempData["ErrorMessage"]");</script>
+    }
+    @if (ViewData["ErrorMessage"] != null)
+    {
+        <script type="text/javascript">toastr.error("@ViewData["ErrorMessage"]");</script>
     }
     <script>
         $(document).ready(function () {
             $('#takoTable').DataTable({
                 dom: 'Bfrtip',
+                "ordering": false,
                 buttons: [
                     'copy', 'excel', 'print'
                 ], "language": {

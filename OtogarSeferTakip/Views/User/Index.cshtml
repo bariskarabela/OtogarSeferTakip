@@ -7,7 +7,7 @@
 
 <div class="row">
     <div class="col">
-        <h1 class="display-4">@ViewData["Title"]</h1>
+        <h1 class="display-4 text-center">@ViewData["Title"]</h1>
         <hr />
     </div>
 </div>
@@ -22,7 +22,7 @@
 
 
 <div class="row mb-3">
-    <div class="col">
+    <div class="offset-2 col-8">
         <table id="userTable" class="table table-hover table-sm">
             <thead>
                 <tr>
@@ -58,7 +58,7 @@
                         <td class="text-end">
                             <a asp-action="Edit" asp-route-id="@user.Id" type="button" class="btn btn-info btn-sm bg-secondary"><i class="fa fa-edit me-2"></i></a>
                             <a asp-action="Delete" asp-route-id="@user.Id" onclick="return confirm('@user.FullName isimli @user.Sicil sicilli kullanıcıyı silmek istediğinize emin misiniz?')" type="button" class="btn btn-info btn-sm bg-secondary"><i class="fa fa-trash me-2"></i></a>
-                            <a asp-action="ResetPassword" asp-controller="User" asp-route-id="@user.Id" onclick="return confirm('@user.FullName isimli @user.Sicil sicilli kullanıcının şifresini sıfırlamak istediğinize emin misiniz?')" type="button" class="btn btn-info btn-sm bg-secondary"><i class="fa-solid fa-key me-2"></i></a>
+                            <a asp-action="ResetPassword" asp-controller="User" asp-route-id="@user.Id" onclick="return confirm('@user.FullName isimli @user.Sicil sicilli kullanıcının şifresini sıfırlamak istediğinize emin misiniz? (Şifre Pl123456++ olacaktır.)')" type="button" class="btn btn-info btn-sm bg-secondary"><i class="fa-solid fa-key me-2"></i></a>
                             @if (ViewData["result"] != null && ViewData["result"] == "PasswordReseted")
                             {
                                 <span class="text-success small">Şifre Güncellendi.</span>
