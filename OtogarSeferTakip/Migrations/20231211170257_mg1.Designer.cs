@@ -12,8 +12,8 @@ using OtogarSeferTakip.Entities;
 namespace OtogarSeferTakip.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20231211122202_mg3")]
-    partial class mg3
+    [Migration("20231211170257_mg1")]
+    partial class mg1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
