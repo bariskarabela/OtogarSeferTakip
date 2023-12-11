@@ -4,7 +4,6 @@
 
 <div class="col-4">
     <form asp-action="TakoListPartial" data-ajax="true" data-ajax-method="get" data-ajax-update="#panel">
-     
     </form>
 </div>
 
@@ -25,9 +24,10 @@
 
                 <td class="text-end">
 
-                    <a asp-action="EditTakoPartial" asp-route-id="@tako.Id" class="btn btn-info btn-sm bg-secondary" data-bs-toggle="modal" data-bs-target="#modalEdit" data-ajax="true" data-ajax-method="get" data-ajax-update="#modalEditContent"><i class="fa fa-edit me-2"></i>
+                    <a asp-action="EditTakoPartial" asp-route-id="@tako.Id" class="btn btn-info btn-sm bg-secondary" data-bs-toggle="modal" data-bs-target="#modalEdit" data-ajax="true" data-ajax-method="get" data-ajax-update="#modalEditContent">
+                        <i class="fa fa-edit me-2"></i>
 
-            </a>
+                    </a>
                     @*                            <a asp-action="Delete" asp-route-id="@tako.TakoId" onclick="return confirm('@tako.TakoName isimli takografı silmek istediğinize emin misiniz?')" type="button" class="btn btn-info btn-sm bg-secondary"><i class="fa fa-trash me-2"></i></a>*@
 
                 </td>
@@ -35,3 +35,21 @@
         }
     </tbody>
 </table>
+
+@section Scripts {
+
+ <script>
+        $(document).ready(function () {
+            $('#takoTable').DataTable({
+                dom: 'Bfrtip',
+                "ordering": false,
+                buttons: [
+                    'copy', 'excel', 'print'
+                ], "language": {
+                    "url": "/uploads/translate.json"
+                }
+            });
+        });
+    </script>
+
+}
