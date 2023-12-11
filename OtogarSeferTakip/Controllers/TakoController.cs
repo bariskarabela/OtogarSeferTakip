@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using OtogarSeferTakip.Entities;
 using OtogarSeferTakip.Models;
 
@@ -7,16 +8,22 @@ namespace OtogarSeferTakip.Controllers
     public class TakoController : Controller
     {
         private readonly DatabaseContext _databaseContext;
+        private readonly IMapper _mapper;
 
-        public TakoController(DatabaseContext databaseContext)
+        public TakoController(DatabaseContext databaseContext, IMapper mapper)
         {
             _databaseContext = databaseContext;
+            _mapper = mapper;
         }
 
         public IActionResult Index()
         {
-           var result = _databaseContext.Takos.ToList();
-            return View(result);
+            return View();
+        }
+        public IActionResult TakoListPartial()
+        {
+            var result = _databaseContext.Takos.ToList();
+            return PartialView("_TakoListPartial",result);
         }
         //public IActionResult Delete(int id)
         //{
@@ -29,48 +36,51 @@ namespace OtogarSeferTakip.Controllers
         //    }
         //    return RedirectToAction(nameof(Index));
         //}
-        public IActionResult Add()
+        public IActionResult AddNewTakoPartial()
         {         
-            return View();
+            return PartialView("_AddNewTakoPartial", new TakoModel());
         }
 
         [HttpPost]
-        public IActionResult Add(Tako tako)
+        public IActionResult AddNewTako(TakoModel model)
         {
             if (ModelState.IsValid)
             {
+                Tako tako = _mapper.Map<Tako>(model);
+
                 _databaseContext.Takos.Add(tako);      
                 _databaseContext.SaveChanges();
-                TempData["Message"] = "Takograf Ekleme Başarılı.";
+
+        
+                return PartialView("_AddNewTakoPartial", new TakoModel { Done = "Eklendi." });
 
             }
-            else
-            {
-                TempData["ErrorMessage"] = "Başarısız.";
-                ModelState.AddModelError(nameof(tako.TakoName), "Hata.");
-            }
-            return RedirectToAction(nameof(Index));
+
+            return PartialView("_AddNewTakoPartial", model);
         }
-        public IActionResult Edit(Tako id)
+        public IActionResult EditTakoPartial(int id)
         {
             Tako tako = _databaseContext.Takos.Find(id);
-            return View(tako);
+            TakoModel model = _mapper.Map<TakoModel>(tako);
+
+            return PartialView("_EditTakoPartial", model);
         }
 
         [HttpPost]
-        public IActionResult Edit(Tako tako, int id)
+        public IActionResult EditTako(int id,TakoModel model)
         {
             if (ModelState.IsValid)
             {
-                var existingTako = _databaseContext.Takos.Find(id);
-
+                Tako tako = _databaseContext.Takos.Find(id);
+                _mapper.Map(model,tako);
 
                 _databaseContext.SaveChanges();
-                TempData["Message"] = "Takograf Düzenlendi.";
+    
+                return PartialView("_EditTakoPartial", new TakoModel { Done = "Düzenlendi." });
             }
+          
 
-
-            return RedirectToAction(nameof(Index));
+            return PartialView("_EditTakoPartial", model);
         }
     }
 }
