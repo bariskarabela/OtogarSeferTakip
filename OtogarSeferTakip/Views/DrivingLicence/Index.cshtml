@@ -1,0 +1,96 @@
+﻿@{
+    ViewData["Title"] = "Ehliyetler";
+}
+
+
+<div class="row">
+    <div class="col">
+        <h1 class="display-4 text-center">@ViewData["Title"]</h1>
+        <hr />
+    </div>
+</div>
+
+
+<div class="row mb-3">
+    <div class="offset-4 col-4">
+
+        <div class="mb-1">
+            <a asp-action="AddNewDrivingLicencePartial" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalAdd" data-ajax="true" data-ajax-method="get" data-ajax-update="#modalAddContent"><i class="fa-solid fa-plus me-2"></i>Ekle</a>
+            <a asp-action="DrivingLicenceListPartial" id="refresh" data-ajax="true" data-ajax-method="get" data-ajax-update="#panel" class="btn btn-secondary btn-sm"><i class="fa-solid fa-arrows-rotate me-2"></i>Yenile</a>
+        </div>
+
+    </div>
+</div>
+
+<div class="row mb-3">
+
+    <div class="col-6 offset-3">
+        <div>
+
+            <div id="panel">
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade bd-example-modal-sm" id="modalAdd" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div id="modalAddContent" class="modal-content">
+        </div>
+    </div>
+</div>
+
+<div class="modal fade bd-example-modal-sm" id="modalEdit" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog  modal-sm">
+        <div id="modalEditContent" class="modal-content"> </div>
+    </div>
+</div>
+
+
+
+
+
+@section Scripts {
+
+    <script>
+        $(function () {
+            refresh.click();
+        })
+    </script>
+
+
+
+    @if (TempData["Message"] != null)
+    {
+        <script type="text/javascript">toastr.success("@TempData["Message"]");</script>
+    }
+    @if (ViewData["Message"] != null)
+    {
+        <script type="text/javascript">toastr.success("@ViewData["Message"]");</script>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <script type="text/javascript">toastr.error("@TempData["ErrorMessage"]");</script>
+    }
+    @if (ViewData["ErrorMessage"] != null)
+    {
+        <script type="text/javascript">toastr.error("@ViewData["ErrorMessage"]");</script>
+    }
+    <script>
+        $(document).ready(function () {
+            $('#takoTable').DataTable({
+                dom: 'Bfrtip',
+                "ordering": false,
+                buttons: [
+                    'copy', 'excel', 'print'
+                ], "language": {
+                    "url": "/uploads/translate.json"
+                }
+            });
+        });
+    </script>
+
+
+}

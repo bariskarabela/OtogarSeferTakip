@@ -1,9 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using OtogarSeferTakip.Entities;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
-namespace OtogarSeferTakip.Entities
+namespace OtogarSeferTakip.Models
 {
-    public class Bus
+    public class AddBusModel
     {
         [Key]
         public int Id { get; set; }
@@ -35,9 +36,9 @@ namespace OtogarSeferTakip.Entities
         [Required(ErrorMessage = "*Boş bırakılamaz.")]
         [ForeignKey("Tako")]
         public int TakoId { get; set; }
-        public Tako Tako { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "*Boş bırakılamaz.")]
         public string TakoNumber { get; set; }
-       
+        public string? Done { get; set; }
     }
 }

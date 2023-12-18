@@ -1,12 +1,288 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Anasayfa";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Hoşgeldiniz</h1>
-  
-</div>
 
 
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="container-fluid">
+        <div class="row p-1">
+
+            <div class="col-4">
+                <div class="rounded border border-dark">
+                    <h3 class="text-center">Araç Bilgileri</h3>
+
+                    <div>
+                        <div class="container">
+                            <form class="d-flex">
+                                <input class="form-control me-2" type="search" placeholder="Ara" aria-label="Search">
+                                <button class="btn btn-outline-success" type="submit">Ara</button>
+
+                            </form>
+                        </div>
+
+                    </div>
+                    <div class="card-body">
+
+                        <div class="form-group mb-1">
+
+                            <input class="form-control" placeholder="Plaka" />
+                            <span class="text-danger small"></span>
+                        </div>
+                        <div class="form-group mb-1">
+
+                            <input class="form-control" placeholder="Plaka" />
+                            <span class="text-danger small"></span>
+                        </div>
+                        <div class="form-group mb-1">
+
+                            <input class="form-control" placeholder="Plaka" />
+                            <span class="text-danger small"></span>
+                        </div>
+                        <div class="form-group mb-1">
+
+                            <input class="form-control" placeholder="Plaka" />
+                            <span class="text-danger small"></span>
+                        </div>
+                        <div class="form-group mb-1">
+
+                            <input class="form-control" placeholder="Plaka" />
+                            <span class="text-danger small"></span>
+                        </div>
+                        <div class="form-group mb-1">
+
+                            <input class="form-control" placeholder="Plaka" />
+                            <span class="text-danger small"></span>
+                        </div>
+                        <div class="">
+                        
+                            <button type="button" class="btn btn-secondary">Sıfırla</button>
+                            <button type="button" class="btn btn-success">Kaydet</button>
+                        </div>
+                        
+                       
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="col-8">
+                <div class="rounded border border-dark">
+                    <h3 class="text-center">Sefer Bilgileri</h3>
+              
+                    <div>
+                        <div class="container-fluid">
+                            <form class="d-flex">
+                                <input class="form-control me-2" type="search" placeholder="Ara" aria-label="Search">
+                                <button class="btn btn-outline-success" type="submit">Ara</button>
+
+                            </form>
+                        </div>
+
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group mb-1">
+
+                            <input class="form-control" placeholder="Plaka" />
+                            <span class="text-danger small"></span>
+                        </div>
+                        <div class="form-group mb-1">
+
+                            <input class="form-control" placeholder="Plaka" />
+                            <span class="text-danger small"></span>
+                        </div>
+                        <div class="form-group mb-1">
+
+                            <input class="form-control" placeholder="Plaka" />
+                            <span class="text-danger small"></span>
+                        </div>
+                        <div class="form-group mb-1">
+
+                            <input class="form-control" placeholder="Plaka" />
+                            <span class="text-danger small"></span>
+                        </div>
+                        <div class="form-group mb-1">
+
+                            <input class="form-control" placeholder="Plaka" />
+                            <span class="text-danger small"></span>
+                        </div>
+                        <div class="form-group mb-1">
+
+                            <input class="form-control" placeholder="Plaka" />
+                            <span class="text-danger small"></span>
+                        </div>
+                        <div class="">
+                       
+                            <button type="button" class="btn btn-secondary">Sıfırla</button>
+                            <button type="button" class="btn btn-success">Kaydet</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="row p-1">
+            <div class="col">
+                <div class="col rounded border border-dark">
+                    <h3 class="text-center">1. Sürücü</h3>
+              
+                    <div class="card-body">
+                        <div class="form-group mb-1">
+
+                            <input class="form-control" placeholder="Plaka" />
+                            <span class="text-danger small"></span>
+                        </div>
+                        <div class="form-group mb-1">
+
+                            <input class="form-control" placeholder="Plaka" />
+                            <span class="text-danger small"></span>
+                        </div>
+                        <div class="form-group mb-1">
+
+                            <input class="form-control" placeholder="Plaka" />
+                            <span class="text-danger small"></span>
+                        </div>
+                        <div class="form-group mb-1">
+
+                            <input class="form-control" placeholder="Plaka" />
+                            <span class="text-danger small"></span>
+                        </div>
+                        <div class="">
+                     
+                            <button type="button" class="btn btn-secondary">Sıfırla</button>
+                            <button type="button" class="btn btn-success">Kaydet</button>
+                        </div>
+                        
+                    </div>
+                </div>
+
+            </div>
+            <div class="col">
+                <div class="col rounded border border-dark">
+                    <h3 class="text-center">2. Sürücü</h3>
+               
+                    <div class="card-body">
+                        <div class="form-group mb-1">
+
+                            <input class="form-control" placeholder="Plaka" />
+                            <span class="text-danger small"></span>
+                        </div>
+                        <div class="form-group mb-1">
+
+                            <input class="form-control" placeholder="Plaka" />
+                            <span class="text-danger small"></span>
+                        </div>
+                        <div class="form-group mb-1">
+
+                            <input class="form-control" placeholder="Plaka" />
+                            <span class="text-danger small"></span>
+                        </div>
+                        <div class="form-group mb-1">
+
+                            <input class="form-control" placeholder="Plaka" />
+                            <span class="text-danger small"></span>
+                        </div>
+                        <div class="">
+                      
+                            <button type="button" class="btn btn-secondary">Sıfırla</button>
+                            <button type="button" class="btn btn-success">Kaydet</button>
+                        </div>
+                      
+                    </div>
+                </div>
+
+            </div>
+            <div class="col">
+                <div class="col rounded border border-dark">
+                    <h3 class="text-center">3. Sürücü</h3>
+                
+                    <div class="card-body">
+                        <div class="form-group mb-1">
+
+                            <input class="form-control" placeholder="Plaka" />
+                            <span class="text-danger small"></span>
+                        </div>
+                        <div class="form-group mb-1">
+
+                            <input class="form-control" placeholder="Plaka" />
+                            <span class="text-danger small"></span>
+                        </div>
+                        <div class="form-group mb-1">
+
+                            <input class="form-control" placeholder="Plaka" />
+                            <span class="text-danger small"></span>
+                        </div>
+                        <div class="form-group mb-1">
+
+                            <input class="form-control" placeholder="Plaka" />
+                            <span class="text-danger small"></span>
+                        </div>
+                        <div class="">
+                         
+                            <button type="button" class="btn btn-secondary">Sıfırla</button>
+                            <button type="button" class="btn btn-success">Kaydet</button>
+                        </div>
+                        
+                    </div>
+                </div>
+
+            </div>
+            <div class="col">
+                <div class="col rounded border border-dark">
+
+                    <h3 class="text-center">Sefer</h3>
+          
+                    <div class="card-body">
+                        <div class="form-group mb-1">
+
+                            <input class="form-control" placeholder="Plaka" />
+                            <span class="text-danger small"></span>
+                        </div>
+                        <div class="form-group mb-1">
+
+                            <input class="form-control" placeholder="Plaka" />
+                            <span class="text-danger small"></span>
+                        </div>
+                        <div class="form-group mb-1">
+
+                            <input class="form-control" placeholder="Plaka" />
+                            <span class="text-danger small"></span>
+                        </div>
+                        <div class="form-group mb-1">
+
+                            <input class="form-control" placeholder="Plaka" />
+                            <span class="text-danger small"></span>
+                        </div>
+                        <div class="">
+                       
+                            <button type="button" class="btn btn-secondary">Sıfırla</button>
+                            <button type="button" class="btn btn-success">Kaydet</button>
+                        </div>
+                      
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+}
+
+
+
+
+else
+{
+    <div class="text-center">
+        <h1 class="display-4">Hoşgeldiniz</h1>
+
+    </div>
+}
 
 

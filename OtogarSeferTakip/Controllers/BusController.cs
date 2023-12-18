@@ -40,21 +40,21 @@ namespace OtogarSeferTakip.Controllers
         //}
         public IActionResult AddNewBusPartial()
         {
-            return PartialView("_AddNewBusPartial", new BusCustomModel());
+            return PartialView("_AddNewBusPartial", new AddBusModel());
         }
 
         [HttpPost]
-        public IActionResult AddNewBus(BusCustomModel model)
+        public IActionResult AddNewBus(AddBusModel model)
         {
             if (ModelState.IsValid)
             {
-                Bus tako = _mapper.Map<Bus>(model);
+                Bus bus = _mapper.Map<Bus>(model);
 
-                _databaseContext.Buses.Add(tako);
+                _databaseContext.Buses.Add(bus);
                 _databaseContext.SaveChanges();
 
 
-                return PartialView("_AddNewBusPartial", new BusCustomModel { Done = "Eklendi." });
+                return PartialView("_AddNewBusPartial", new AddBusModel { Done = "Eklendi." });
 
             }
 
@@ -62,23 +62,23 @@ namespace OtogarSeferTakip.Controllers
         }
         public IActionResult EditBusPartial(int id)
         {
-            Bus tako = _databaseContext.Buses.Find(id);
-            BusCustomModel model = _mapper.Map<BusCustomModel>(tako);
+            Bus bus = _databaseContext.Buses.Find(id);
+            EditBusModel model = _mapper.Map<EditBusModel>(bus);
 
             return PartialView("_EditBusPartial", model);
         }
 
         [HttpPost]
-        public IActionResult EditBus(int id, BusCustomModel model)
+        public IActionResult EditBus(int id, EditBusModel model)
         {
             if (ModelState.IsValid)
             {
-                Bus tako = _databaseContext.Buses.Find(id);
-                _mapper.Map(model, tako);
+                Bus bus = _databaseContext.Buses.Find(id);
+                _mapper.Map(model, bus);
 
                 _databaseContext.SaveChanges();
 
-                return PartialView("_EditBusPartial", new BusCustomModel { Done = "Düzenlendi." });
+                return PartialView("_EditBusPartial", new EditBusModel { Done = "Düzenlendi." });
             }
 
 

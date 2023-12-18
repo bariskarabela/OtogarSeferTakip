@@ -50,7 +50,7 @@ namespace OtogarSeferTakip.Migrations
                     BusPlate = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     BusType = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     BusBrand = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    BusModel = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    BusModelName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     BusEngineNumber = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     TakoId = table.Column<int>(type: "int", nullable: false),
                     TakoNumber = table.Column<string>(type: "nvarchar(max)", nullable: false)

@@ -10,7 +10,12 @@ namespace OtogarSeferTakip
         {
             CreateMap<User, UserModel>().ReverseMap();
             CreateMap<User, EditUserModel>().ReverseMap();
+
             CreateMap<Tako, TakoModel>().ReverseMap();
+
+            CreateMap<Bus, AddBusModel>().ReverseMap();
+            CreateMap<Bus, EditBusModel>().ReverseMap();
+            CreateMap<DrivingLicence, DrivingLicenceModel>().ReverseMap();
 
 
         }

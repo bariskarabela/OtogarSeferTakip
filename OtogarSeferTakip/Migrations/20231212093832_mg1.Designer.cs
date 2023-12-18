@@ -12,7 +12,7 @@ using OtogarSeferTakip.Entities;
 namespace OtogarSeferTakip.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20231211170257_mg1")]
+    [Migration("20231212093832_mg1")]
     partial class mg1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -42,7 +42,7 @@ namespace OtogarSeferTakip.Migrations
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
-                    b.Property<string>("BusModel")
+                    b.Property<string>("BusModelName")
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");

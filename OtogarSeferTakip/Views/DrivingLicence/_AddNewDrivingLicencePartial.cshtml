@@ -1,0 +1,75 @@
+﻿@model DrivingLicenceModel;
+
+
+
+<!-- Modal -->
+
+<div class="modal-header">
+    <h5 class="modal-title">Ekle</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+
+
+<div class="modal-body">
+    <form id="frmAddNewDrivingLicence" asp-action="AddNewDrivingLicence" method="post" data-ajax="true" data-ajax-method="post" data-ajax-update="#modalAddContent">
+        <div asp-validation-summary="ModelOnly" class="text-danger small"></div>
+
+        <div class="form-group mb-1">
+            <label asp-for="LicenceNo" class="form-label">Ehliyet Numarası</label>
+            <input asp-for="LicenceNo" type="text" class="form-control" placeholder="Ehliyet Numarası" />
+            <span asp-validation-for="LicenceNo" class="text-danger small"></span>
+        </div>
+        <div class="form-group mb-1">
+            <label asp-for="Name" class="form-label">İsim</label>
+            <input asp-for="Name" type="text" class="form-control" placeholder="İsim" />
+            <span asp-validation-for="Name" class="text-danger small"></span>
+        </div>
+        <div class="form-group mb-1">
+            <label asp-for="LastName" class="form-label">Soyisim</label>
+            <input asp-for="LastName" type="text" class="form-control" placeholder="Soyisim" />
+            <span asp-validation-for="LastName" class="text-danger small"></span>
+        </div>
+        <label asp-for="Gender" class="form-label"><i class="fa-solid fa-handcuffs me-2"></i>Cinsiyet</label>
+        <div class="input-group mb-3">
+
+            <div>
+                <select asp-for="Gender" class="form-select">
+                    <option value="">Seçiniz...</option>
+                    <option value="E">E</option>
+                    <option value="K">K</option>
+
+                </select>
+            </div>
+
+            <div>  <span asp-validation-for="Gender" class="text-danger small"></span></div>
+
+        </div>
+        <div class="form-group mb-1">
+            <label asp-for="Birthday" class="form-label">Doğum Tarihi</label>
+            <input asp-for="Birthday" type="date" class="form-control" placeholder="Doğum Tarihi" />
+            <span asp-validation-for="Birthday" class="text-danger small"></span>
+        </div>
+
+    
+    </form>
+
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kapat</button>
+    <button type="submit" class="btn btn-success" form="frmAddNewDrivingLicence">Kaydet</button>
+
+</div>
+
+
+@if (string.IsNullOrEmpty(Model.Done) == false)
+{
+    <script>
+        $("#modalAdd").modal("hide");
+        toastr.success('@Model.Done', 'Başarılı');
+        refresh.click();
+    </script>
+}
+
+
+
